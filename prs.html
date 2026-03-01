@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shridatt · Pure · Cold Pressed · Superfoods</title>
+    <!-- Tailwind + Fonts + AOS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Inter',sans-serif;background:#fcfefc;color:#1e2f1e;scroll-behavior:smooth;}
+        h1,h2,h3,.serif{font-family:'Playfair Display',serif;font-weight:700;}
+        .float-wa{position:fixed;bottom:30px;right:30px;z-index:99;background:#25D366;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(37,211,102,0.4);transition:0.2s;}
+        .float-wa:hover{transform:scale(1.1);background:#20b859;}
+        ::-webkit-scrollbar{width:8px;}
+        ::-webkit-scrollbar-track{background:#e5f0e5;}
+        ::-webkit-scrollbar-thumb{background:#2d5a27;border-radius:20px;}
+        #mobile-menu{transition:opacity 0.3s ease;}
+        .logo-animate { animation: gentlePulse 2.5s infinite ease-in-out; }
+        @keyframes gentlePulse {
+            0% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(45,90,39,0.3)); }
+            50% { transform: scale(1.02); filter: drop-shadow(0 4px 8px rgba(45,90,39,0.2)); }
+            100% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(45,90,39,0)); }
+        }
+        .preloader-logo { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; overflow: hidden; }
+        /* product card styles */
+        .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(30, 63, 30, 0.1), 0 10px 10px -5px rgba(30, 63, 30, 0.04); }
+        .benefits-content { transition: max-height 0.3s ease-out; overflow: hidden; max-height: 0; }
+        .benefits-content.expanded { max-height: 500px; }
+        .related-thumbs img { transition: opacity 0.2s; width: 2.5rem; height: 2.5rem; object-fit: cover; border-radius: 0.375rem; border: 1px solid #e5e7eb; }
+        .related-thumbs img:hover { opacity: 0.8; cursor: pointer; border-color: #8bc34a; }
+    </style>
+</head>
+<body class="antialiased">
+
+<!-- hidden preloader for logo.jpeg (forward slashes) -->
+<div class="preloader-logo">
+    <img src="shridat/images/logo/logo.jpeg" alt="preload logo">
+</div>
+
+<!-- floating whatsapp (same as main site) -->
+<a href="https://wa.me/918073899199?text=Hello%20Shridatt%2C%20I%20need%20organic%20products" class="float-wa" target="_blank"><i class="fab fa-whatsapp text-white text-3xl"></i></a>
+
+<!-- ====== HEADER (exact same as shridat/index.html) ====== -->
+<nav class="fixed w-full z-50 bg-white/95 backdrop-blur-sm border-b border-green-100/30 shadow-sm" id="navbar">
+    <div class="container mx-auto px-5 lg:px-8 py-4 flex items-center justify-between">
+        <!-- header logo with animation -->
+        <div class="flex items-center gap-2" data-aos="fade-right">
+            <img src="shridat/images/logo/logo.jpeg" alt="Shridatt Logo" class="h-12 w-auto logo-animate" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <span class="text-3xl font-black text-[#2d5a27] tracking-tight serif" style="display:none;">Shridatt</span>
+            <span class="text-xs text-gray-400 hidden md:block italic border-l border-gray-300 pl-3">Est. 1987 · Organic Since Always</span>
+        </div>
+        <div class="hidden lg:flex items-center space-x-7 text-sm font-medium">
+            <!-- Link back to main site (shridat/index.html) -->
+            <a href="shridat/index.html" class="hover:text-[#8bc34a] transition">HOME</a>
+            <a href="shridat/index.html#about-deep" class="hover:text-[#8bc34a] transition">ABOUT</a>
+            <!-- current page is products, but we keep link to main products section -->
+            <a href="shridat/index.html#products" class="hover:text-[#8bc34a] transition">PRODUCTS</a>
+            <a href="shridat/index.html#benefits" class="hover:text-[#8bc34a] transition">WHY US</a>
+            <a href="shridat/index.html#contact" class="bg-[#2d5a27] text-white px-6 py-2.5 rounded-full hover:bg-[#8bc34a] transition shadow-md">CONTACT</a>
+        </div>
+        <button class="lg:hidden text-2xl text-[#2d5a27]" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button>
+    </div>
+</nav>
+
+<!-- mobile menu overlay (same links) -->
+<div id="mobile-menu" class="fixed inset-0 bg-black/95 z-[100] hidden flex-col items-center justify-center space-y-8 text-3xl text-white backdrop-blur-xl opacity-0 transition-opacity duration-300">
+    <button class="absolute top-6 right-6 text-white text-4xl" onclick="toggleMobileMenu()"><i class="fas fa-times"></i></button>
+    <a href="shridat/index.html" onclick="toggleMobileMenu()">HOME</a>
+    <a href="shridat/index.html#about-deep" onclick="toggleMobileMenu()">ABOUT</a>
+    <a href="shridat/index.html#products" onclick="toggleMobileMenu()">PRODUCTS</a>
+    <a href="shridat/index.html#benefits" onclick="toggleMobileMenu()">WHY US</a>
+    <a href="shridat/index.html#contact" onclick="toggleMobileMenu()">CONTACT</a>
+</div>
+
+<!-- ====== MAIN PRODUCT PAGE CONTENT (from your product catalog) ====== -->
+<section id="products" class="py-28 px-5 max-w-7xl mx-auto">
+    
+    <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold text-[#2d5a27] mb-4" style="font-family: serif;">Our Pure Products</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">Browse our complete range of natural items. Click "View Health Benefits" to learn more, or order directly via WhatsApp.</p>
+    </div>
+    
+    <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"></div>
+
+</section>
+
+<!-- ====== FOOTER (exact same as shridat/index.html) ====== -->
+<footer class="bg-[#0e200e] text-gray-400 py-16 px-5">
+    <div class="container mx-auto flex flex-col lg:flex-row justify-between gap-12 border-b border-gray-800 pb-12">
+        <div><span class="text-3xl text-white serif">Shridatt</span><p class="mt-3 max-w-md">Nurturing Health, Naturally — Since 1987</p></div>
+        <div class="flex gap-16">
+            <div><h4 class="text-white font-bold mb-4">Explore</h4><ul class="space-y-2"><li><a href="shridat/index.html" class="hover:text-[#8bc34a]">Home</a></li><li><a href="shridat/index.html#about-deep">About</a></li><li><a href="shridat/index.html#products">Products</a></li></ul></div>
+            <div><h4 class="text-white font-bold mb-4">Legal</h4><ul class="space-y-2"><li>FSSAI: 11225312000424</li><li>GST: 32AABFS1234A1Z5</li><li>Organic Certified</li></ul></div>
+        </div>
+    </div>
+    <div class="container mx-auto mt-8 text-sm flex flex-wrap justify-between">© 2025 Shridatt Organic. All rights reserved. <span><i class="fas fa-leaf text-[#8bc34a]"></i> Plastic‑Neutral Shipping</span></div>
+</footer>
+
+<!-- AOS and scripts -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ once: true, duration: 800 });
+
+    // mobile menu (same toggle function)
+    window.toggleMobileMenu = function() {
+        const m = document.getElementById('mobile-menu');
+        if(m.classList.contains('hidden')){
+            m.classList.remove('hidden');
+            setTimeout(()=> m.classList.remove('opacity-0'),10);
+        } else {
+            m.classList.add('opacity-0');
+            setTimeout(()=> m.classList.add('hidden'),300);
+        }
+    }
+
+    // nav shrink
+    window.addEventListener('scroll', ()=>{
+        const nav = document.getElementById('navbar');
+        if (window.scrollY>30) { nav.classList.add('py-2'); nav.classList.remove('py-4'); }
+        else { nav.classList.remove('py-2'); nav.classList.add('py-4'); }
+    });
+
+    // ----- PRODUCT DATA AND RENDERING (from your product catalog) -----
+    const benefitsOils = [
+        "It's an antibacterial powerhouse",
+        "Creates a barrier against more bacteria build-up",
+        "Moisturizes the skin",
+        "Protects against irritation like eczema"
+    ];
+    
+    const benefitsKino = [
+        "Known for gum and oral health",
+        "Supports digestive functions",
+        "Traditional remedy for diarrhea",
+        "Natural blood purifier",
+        "Helps manage diabetes"
+    ];
+
+    const benefitsCamphor = [
+        "Natural Air Freshner & Insect Repellent",
+        "Helps in Relieving Congestion",
+        "Enhances focus & Calms the mind",
+        "Purifies the air in enclosed spaces",
+        "Uplifts mood with soothing Aroma"
+    ];
+
+    const benefitsHoney = [
+        "Boosts immunity & energy",
+        "Natural Antibacterial Agent",
+        "Soothes sore Throats & Coughs",
+        "Promotes digestive health",
+        "Great Natural Sweetener Alternative"
+    ];
+
+    const benefitsChia = [
+        "Improved blood sugar control",
+        "Lower blood pressure",
+        "Increased fiber intake",
+        "Contain 138 calories per ounce"
+    ];
+
+    const benefitsFlax = [
+        "Rich in lignans and omega-3s",
+        "Supports heart and brain health",
+        "Aids digestion and weight management",
+        "Promotes hormonal balance",
+        "Natural plant-based protein source"
+    ];
+
+    const benefitsSalt = [
+        "Reduces Cholesterol",
+        "Helps in burning calories",
+        "Acts as natural pain killer",
+        "Enhances the flow of fresh blood"
+    ];
+
+    const benefitsDhoopa = [
+        "Long lasting Fragrance",
+        "Uplifts Your Mood",
+        "Purifies the ambiance",
+        "Pure and Natural",
+        "Perfect for Poojas"
+    ];
+
+    // base path: shridat/images/ - using forward slashes
+    const basePath = "shridat/images/";
+
+    // All 17 items with local images
+    const productList = [
+        {
+            id: 'prod-1',
+            title: 'Cold Pressed Coconut Oil', 
+            category: 'Oils', 
+            desc: 'Premium cold pressed coconut oil, extracted naturally without heat.', 
+            image: basePath + 'COLD_PRESSED_COCONUT_OIL.png',
+            benefits: benefitsOils
+        },
+        {
+            id: 'prod-2',
+            title: 'Cold Pressed Gingelly Oil', 
+            category: 'Oils', 
+            desc: 'Traditional cold pressed sesame oil. Excellent for heart-healthy cooking.', 
+            image: basePath + 'Shridatt_Gingelly_Oil.png',
+            benefits: benefitsOils
+        },
+        {
+            id: 'prod-3',
+            title: 'Groundnut Oil', 
+            category: 'Oils', 
+            desc: 'Healthy, cold-pressed groundnut oil extracted purely without heat.', 
+            image: basePath + 'pure-cold-pressed-oils-food-products%20(2).png',
+            benefits: benefitsOils
+        },
+        {
+            id: 'prod-4',
+            title: 'Almond Oil', 
+            category: 'Oils', 
+            desc: 'Deeply nourishes skin and hair, rich in natural Vitamin E.', 
+            image: basePath + 'pure-cold-pressed-oils-food-products%20(2).png',
+            benefits: benefitsOils
+        },
+        {
+            id: 'prod-5',
+            title: 'Celtic Salt', 
+            category: 'Superfoods', 
+            desc: 'Unrefined, mineral-rich salt harvested naturally from the sea.', 
+            image: basePath + 'celtic-salt.png',
+            benefits: benefitsSalt
+        },
+        {
+            id: 'prod-6',
+            title: 'Raw Honey', 
+            category: 'Superfoods', 
+            desc: '100% pure, unpasteurized honey directly from nature.', 
+            image: basePath + 'honey.png',
+            benefits: benefitsHoney
+        },
+        {
+            id: 'prod-7',
+            title: 'Indian Kino', 
+            category: 'Herbs', 
+            desc: 'Traditional Ayurvedic herb known for its powerful healing properties.', 
+            image: basePath + 'indian_kind.png',
+            benefits: benefitsKino
+        },
+        {
+            id: 'prod-8',
+            title: 'Dhoopa Sticks', 
+            category: 'Wellness', 
+            desc: 'Natural, chemical-free dhoopa for a serene and divine atmosphere.', 
+            image: basePath + 'dhoopa-stick.png',
+            benefits: benefitsDhoopa
+        },
+        {
+            id: 'prod-9',
+            title: 'Camphor Slab', 
+            category: 'Wellness', 
+            desc: 'Pure camphor slabs for poojas, meditation, and pure air.', 
+            image: basePath + 'Camphor-slab.png',
+            benefits: benefitsCamphor
+        },
+        {
+            id: 'prod-10',
+            title: 'Camphor Cone', 
+            category: 'Wellness', 
+            desc: 'Convenient camphor cones to naturally purify the air around you.', 
+            image: basePath + 'Camphor-slab.png',
+            benefits: benefitsCamphor
+        },
+        {
+            id: 'prod-11',
+            title: 'Chia Seeds', 
+            category: 'Superfoods', 
+            desc: 'Nutrient-dense super-seeds packed with Omega-3 and fiber.', 
+            image: basePath + 'pure-cold-pressed-oils-food-products%20(2).png',
+            benefits: benefitsChia
+        },
+        {
+            id: 'prod-12',
+            title: 'Flax Seeds', 
+            category: 'Superfoods', 
+            desc: 'Fresh, organic flax seeds for your daily dose of essential nutrients.', 
+            image: basePath + 'pure-cold-pressed-oils-food-products%20(2).png',
+            benefits: benefitsFlax
+        },
+        {
+            id: 'prod-13',
+            title: 'Turmeric Powder', 
+            category: 'Spices', 
+            desc: 'Pure, stone-ground organic turmeric powder rich in healing curcumin.', 
+            image: basePath + 'pure-cold-pressed-oils-food-products%20(2).png',
+            benefits: [] 
+        },
+        {
+            id: 'prod-14',
+            title: 'Chilly Powder', 
+            category: 'Spices', 
+            desc: 'Pure stone-ground chilly powder delivering authentic flavor and heat.', 
+            image: basePath + 'Chili-Powder.png',
+            benefits: []
+        },
+        {
+            id: 'prod-15',
+            title: 'Citronella Spray', 
+            category: 'Wellness', 
+            desc: 'Natural, chemical-free insect repellent that purifies your surroundings.', 
+            image: basePath + 'pure-cold-pressed-oils-food-products%20(2).png',
+            benefits: []
+        },
+        {
+            id: 'prod-16',
+            title: 'Jaggery Block', 
+            category: 'Superfoods', 
+            desc: 'Organic, unrefined pure jaggery blocks packed with natural minerals.', 
+            image: basePath + 'pure-cold-pressed-oils-food-products%20(2).png',
+            benefits: []
+        },
+        {
+            id: 'prod-17',
+            title: 'Jaggery Powder', 
+            category: 'Superfoods', 
+            desc: 'Convenient, highly nutritious organic alternative to refined sugar.', 
+            image: basePath + 'pure-cold-pressed-oils-food-products%20(2).png',
+            benefits: []
+        }
+    ];
+
+    // Helper: generate three related image thumbnails
+    function getRelatedImages(title) {
+        const t = title.toLowerCase();
+        const base = basePath;
+        
+        if (t.includes('coconut oil')) {
+            return [base + 'COLD_PRESSED_COCONUT_OIL.png', base + 'Shridatt_Gingelly_Oil.png', base + 'pure-cold-pressed-oils-food-products%20(2).png'];
+        }
+        if (t.includes('gingelly')) {
+            return [base + 'Shridatt_Gingelly_Oil.png', base + 'COLD_PRESSED_COCONUT_OIL.png', base + 'pure-cold-pressed-oils-food-products%20(2).png'];
+        }
+        if (t.includes('groundnut')) {
+            return [base + 'pure-cold-pressed-oils-food-products%20(2).png', base + 'COLD_PRESSED_COCONUT_OIL.png', base + 'Shridatt_Gingelly_Oil.png'];
+        }
+        if (t.includes('almond')) {
+            return [base + 'pure-cold-pressed-oils-food-products%20(2).png', base + 'COLD_PRESSED_COCONUT_OIL.png', base + 'Shridatt_Gingelly_Oil.png'];
+        }
+        if (t.includes('celtic') || t.includes('salt')) {
+            return [base + 'celtic-salt.png', base + 'celtic-salt.png', base + 'celtic-salt.png'];
+        }
+        if (t.includes('honey')) {
+            return [base + 'honey.png', base + 'honey.png', base + 'pure-cold-pressed-oils-food-products%20(2).png'];
+        }
+        if (t.includes('kino')) {
+            return [base + 'indian_kind.png', base + 'indian_kind.png', base + 'pure-cold-pressed-oils-food-products%20(2).png'];
+        }
+        if (t.includes('dhoopa')) {
+            return [base + 'dhoopa-stick.png', base + 'dhoopa-stick.png', base + 'Camphor-slab.png'];
+        }
+        if (t.includes('camphor')) {
+            return [base + 'Camphor-slab.png', base + 'Camphor-slab.png', base + 'dhoopa-stick.png'];
+        }
+        if (t.includes('chia')) {
+            return [base + 'pure-cold-pressed-oils-food-products%20(2).png', base + 'honey.png', base + 'celtic-salt.png'];
+        }
+        if (t.includes('flax')) {
+            return [base + 'pure-cold-pressed-oils-food-products%20(2).png', base + 'honey.png', base + 'celtic-salt.png'];
+        }
+        if (t.includes('turmeric')) {
+            return [base + 'pure-cold-pressed-oils-food-products%20(2).png', base + 'Chili-Powder.png', base + 'pure-cold-pressed-oils-food-products%20(2).png'];
+        }
+        if (t.includes('chilly') || t.includes('chili')) {
+            return [base + 'Chili-Powder.png', base + 'Chili-Powder.png', base + 'pure-cold-pressed-oils-food-products%20(2).png'];
+        }
+        if (t.includes('citronella')) {
+            return [base + 'pure-cold-pressed-oils-food-products%20(2).png', base + 'Camphor-slab.png', base + 'dhoopa-stick.png'];
+        }
+        if (t.includes('jaggery')) {
+            return [base + 'pure-cold-pressed-oils-food-products%20(2).png', base + 'honey.png', base + 'celtic-salt.png'];
+        }
+        return [base + 'pure-cold-pressed-oils-food-products%20(2).png', base + 'COLD_PRESSED_COCONUT_OIL.png', base + 'Shridatt_Gingelly_Oil.png'];
+    }
+
+    // Toggle function for benefits
+    function toggleBenefits(id) {
+        const content = document.getElementById('benefits-' + id);
+        const icon = document.getElementById('icon-' + id);
+        if (content) {
+            if (content.classList.contains('expanded')) {
+                content.classList.remove('expanded');
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            } else {
+                content.classList.add('expanded');
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            }
+        }
+    }
+
+    // Render products
+    function renderProducts() {
+        const grid = document.getElementById('productGrid');
+        
+        grid.innerHTML = productList.map((p) => {
+            const waMsg = encodeURIComponent(`Hello Shridatt, I want to order ${p.title}`);
+            const waLink = `https://wa.me/918073899199?text=${waMsg}`;
+            
+            const related = getRelatedImages(p.title);
+            
+            let benefitsHtml = '';
+            let toggleBtn = '';
+            
+            if (p.benefits && p.benefits.length > 0) {
+                let liItems = p.benefits.map(b => `<li class="mb-2 flex items-start"><i class="fas fa-check text-[#8bc34a] mr-2 mt-1 text-xs"></i><span>${b}</span></li>`).join('');
+                
+                toggleBtn = `
+                    <button onclick="toggleBenefits('${p.id}')" class="text-[#2d5a27] font-bold text-sm mb-4 text-left w-full focus:outline-none flex justify-between items-center bg-green-50 p-3 rounded-lg hover:bg-green-100 transition shadow-sm border border-green-100">
+                        <span><i class="fas fa-heartbeat mr-2"></i> View Health Benefits</span>
+                        <i id="icon-${p.id}" class="fas fa-chevron-down text-[#8bc34a]"></i>
+                    </button>
+                `;
+                
+                benefitsHtml = `
+                    <div id="benefits-${p.id}" class="benefits-content text-sm text-gray-700 bg-[#f4fbf4] rounded-lg mb-4 px-4 border border-green-100/50">
+                        <ul class="py-4">
+                            ${liItems}
+                        </ul>
+                    </div>
+                `;
+            } else {
+                toggleBtn = `<div class="mb-4"></div>`;
+                benefitsHtml = `<div class="mb-4"></div>`;
+            }
+
+            const thumbHtml = related.map(src => 
+                `<img src="${src}" class="w-8 h-8 rounded-md object-cover border border-gray-200 hover:border-green-400 transition" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=100&h=100';">`
+            ).join('');
+
+            return `
+            <div class="bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-sm card-hover flex flex-col">
+                <div class="h-48 bg-[#f4f7f4] flex items-center justify-center relative overflow-hidden">
+                    <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover hover:scale-105 transition duration-500" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=500';">
+                </div>
+                
+                <div class="flex justify-center gap-2 py-3 px-2 bg-gray-50/80 border-b border-gray-100 related-thumbs">
+                    ${thumbHtml}
+                </div>
+
+                <div class="p-6 flex-1 flex flex-col">
+                    <span class="text-xs font-bold text-[#8bc34a] uppercase tracking-wider mb-2">${p.category}</span>
+                    <h3 class="text-xl font-bold mb-3 text-[#1e3a1e]">${p.title}</h3>
+                    <p class="text-gray-600 text-sm mb-6 flex-1">${p.desc}</p>
+                    
+                    ${toggleBtn}
+                    ${benefitsHtml}
+                    
+                    <a href="${waLink}" target="_blank" class="block w-full text-center bg-[#25D366] text-white py-3 rounded-xl font-bold hover:bg-[#128C7E] transition shadow-md flex justify-center items-center gap-2 mt-auto">
+                        <i class="fab fa-whatsapp text-xl"></i> Order Now
+                    </a>
+                </div>
+            </div>`;
+        }).join('');
+    }
+    
+    renderProducts();
+
+    // Make toggleBenefits available globally
+    window.toggleBenefits = toggleBenefits;
+</script>
+
+</body>
+</html>

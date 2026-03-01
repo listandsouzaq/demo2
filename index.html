@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shridatt · Pure · Cold Pressed · Superfoods</title>
+    <!-- Tailwind + Fonts + AOS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Inter',sans-serif;background:#fcfefc;color:#1e2f1e;scroll-behavior:smooth;}
+        h1,h2,h3,.serif{font-family:'Playfair Display',serif;font-weight:700;}
+        .hero{background:linear-gradient(166deg, #1f3b1a 0%, #163312 100%);}
+        .float-wa{position:fixed;bottom:30px;right:30px;z-index:99;background:#25D366;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(37,211,102,0.4);transition:0.2s;}
+        .float-wa:hover{transform:scale(1.1);background:#20b859;}
+        ::-webkit-scrollbar{width:8px;}
+        ::-webkit-scrollbar-track{background:#e5f0e5;}
+        ::-webkit-scrollbar-thumb{background:#2d5a27;border-radius:20px;}
+        .benefit-icon{width:50px;height:50px;background:#e5f4e5;border-radius:18px;display:flex;align-items:center;justify-content:center;color:#2d5a27;font-size:1.6rem;}
+        #mobile-menu{transition:opacity 0.3s ease;}
+
+        /* 5-second animated preloader for logo */
+        .preloader-logo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fcfefc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            animation: fadeOut 0.5s ease 5s forwards;
+            pointer-events: none;
+        }
+        .preloader-logo img {
+            width: 180px;
+            height: auto;
+            animation: gentlePulse 2s infinite ease-in-out;
+        }
+        @keyframes gentlePulse {
+            0% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(45,90,39,0.3)); }
+            50% { transform: scale(1.05); filter: drop-shadow(0 10px 20px rgba(45,90,39,0.2)); }
+            100% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(45,90,39,0)); }
+        }
+        @keyframes fadeOut {
+            to { opacity: 0; visibility: hidden; }
+        }
+        
+        /* product card hover */
+        .product-card {
+            transition: all 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 40px -15px #1e3f1e;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+<!-- 5-second animated preloader with logo.jpeg (forward slashes) -->
+<div class="preloader-logo">
+    <img src="shridat/images/logo/logo.jpeg" alt="Shridatt Logo">
+</div>
+
+<!-- floating whatsapp -->
+<a href="https://wa.me/918073899199?text=Hello%20Shridatt%2C%20I%20need%20organic%20products" class="float-wa" target="_blank"><i class="fab fa-whatsapp text-white text-3xl"></i></a>
+
+<!-- ====== NAVIGATION (header appears on all pages) ====== -->
+<nav class="fixed w-full z-50 bg-white/95 backdrop-blur-sm border-b border-green-100/30 shadow-sm" id="navbar">
+    <div class="container mx-auto px-5 lg:px-8 py-4 flex items-center justify-between">
+        <!-- header logo with animation -->
+        <div class="flex items-center gap-2" data-aos="fade-right">
+            <img src="shridat/images/logo/logo.jpeg" alt="Shridatt Logo" class="h-12 w-auto logo-animate" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <span class="text-3xl font-black text-[#2d5a27] tracking-tight serif" style="display:none;">Shridatt</span>
+            <span class="text-xs text-gray-400 hidden md:block italic border-l border-gray-300 pl-3">Est. 1987 · Organic Since Always</span>
+        </div>
+        <div class="hidden lg:flex items-center space-x-7 text-sm font-medium">
+            <a href="#home" class="hover:text-[#8bc34a] transition">HOME</a>
+            <a href="#about-deep" class="hover:text-[#8bc34a] transition">ABOUT</a>
+            <a href="#products-preview" class="hover:text-[#8bc34a] transition">PRODUCTS</a>
+            <a href="#benefits" class="hover:text-[#8bc34a] transition">WHY US</a>
+            <a href="#contact" class="bg-[#2d5a27] text-white px-6 py-2.5 rounded-full hover:bg-[#8bc34a] transition shadow-md">CONTACT</a>
+        </div>
+        <button class="lg:hidden text-2xl text-[#2d5a27]" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button>
+    </div>
+</nav>
+
+<!-- mobile menu overlay -->
+<div id="mobile-menu" class="fixed inset-0 bg-black/95 z-[100] hidden flex-col items-center justify-center space-y-8 text-3xl text-white backdrop-blur-xl opacity-0 transition-opacity duration-300">
+    <button class="absolute top-6 right-6 text-white text-4xl" onclick="toggleMobileMenu()"><i class="fas fa-times"></i></button>
+    <a href="#home" onclick="toggleMobileMenu()">HOME</a>
+    <a href="#about-deep" onclick="toggleMobileMenu()">ABOUT</a>
+    <a href="#products-preview" onclick="toggleMobileMenu()">PRODUCTS</a>
+    <a href="#benefits" onclick="toggleMobileMenu()">WHY US</a>
+    <a href="#contact" onclick="toggleMobileMenu()">CONTACT</a>
+</div>
+
+<!-- ====== HOME / HERO ====== -->
+<section id="home" class="hero text-white pt-36 pb-20 px-5 overflow-hidden relative min-h-[90vh] flex items-center">
+    <div class="container mx-auto grid lg:grid-cols-2 gap-16 items-center relative z-20">
+        <div data-aos="fade-up" data-aos-duration="1000">
+            <span class="inline-block bg-white/10 px-4 py-1 rounded-full text-sm border border-white/20 mb-6"><i class="fas fa-leaf mr-2 text-[#b5d99c]"></i> 100% Cold Pressed · FSSAI: 11225312000424</span>
+            <h1 class="text-5xl md:text-7xl font-black leading-[1.1] serif mb-6">Nurturing Health, <span class="text-[#c7f0a5]">Naturally</span></h1>
+            <p class="text-gray-200 text-lg max-w-xl mb-10 leading-relaxed">Since four generations, Shridatt brings you unrefined, chemical‑free superfoods, oils and traditional remedies — exactly as nature intended.</p>
+            <div class="flex flex-wrap gap-4">
+                <a href="#products-preview" class="bg-[#8bc34a] text-[#1e3a1e] px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-[#2d5a27] transition shadow-xl flex items-center gap-2"><i class="fas fa-eye"></i> Explore Range</a>
+                <a href="https://wa.me/918073899199" target="_blank" class="bg-transparent border-2 border-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-[#2d5a27] transition flex items-center gap-2"><i class="fab fa-whatsapp"></i> Quick Order</a>
+            </div>
+            <div class="flex items-center gap-6 mt-12 text-sm text-gray-200">
+                <span><i class="fas fa-check-circle text-[#8bc34a] mr-1"></i> 5000+ Happy Families</span>
+                <span><i class="fas fa-check-circle text-[#8bc34a] mr-1"></i> Organic Certified</span>
+                <span><i class="fas fa-check-circle text-[#8bc34a] mr-1"></i> Plastic‑Neutral</span>
+            </div>
+        </div>
+        <div class="relative" data-aos="zoom-in" data-aos-delay="200">
+            <div class="bg-white/10 p-4 rounded-[3rem] backdrop-blur-sm border border-white/20 shadow-2xl">
+                <!-- main nurturing image -->
+                <img src="shridat/images/slide/nurturing%20health%2C%20naturally.jpeg" alt="Nurturing Health Naturally" class="rounded-[2.5rem] w-full h-auto object-cover" onerror="this.src='https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&fit=crop&q=85&w=800'">
+            </div>
+            <div class="absolute -bottom-5 -left-5 bg-white text-[#2d5a27] p-4 rounded-2xl shadow-xl flex items-center gap-3">
+                <i class="fas fa-certificate text-4xl text-[#8bc34a]"></i>
+                <div><span class="font-bold text-sm">FSSAI Licensed</span><br><span class="text-xs">#11225312000424</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[#fcfefc] to-transparent z-10"></div>
+</section>
+
+<!-- ====== ABOUT DEEP ====== -->
+<section id="about-deep" class="py-28 px-5 bg-white">
+    <div class="container mx-auto max-w-6xl">
+        <div class="text-center max-w-3xl mx-auto mb-20" data-aos="fade-up">
+            <h2 class="text-4xl md:text-5xl serif text-[#2d5a27] mb-6">Handcrafted For Four Generations</h2>
+            <div class="w-24 h-1 bg-[#8bc34a] mx-auto rounded-full mb-8"></div>
+            <p class="text-gray-600 text-lg">We don’t manufacture — we preserve. From the red soils of coastal Karnataka to your kitchen, every seed, oil and spice tells a story of purity.</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+            <div class="space-y-6 text-gray-700" data-aos="fade-right">
+                <h3 class="text-3xl serif text-[#2d5a27]">Beyond Organic: The Shridatt Way</h3>
+                <p class="leading-relaxed">Founded in 1987 by Vittal Poojary, Shridatt began as a small family run ghani (wooden press) unit in Mangalore. Even today, we use the same traditional cold‑pressing method – no heat, no chemicals – ensuring every drop retains its natural antioxidants, flavor and therapeutic properties. Our coconut oil is pressed within hours of harvesting the kernels; our gingelly oil still carries the nutty aroma that reminds your grandmother’s kitchen.</p>
+                <p class="leading-relaxed">We work directly with 200+ small farmers who practice regenerative agriculture. No pesticides, no synthetic fertilizers – only compost, cow dung and traditional wisdom. Our spices are stone‑ground, our honeys are raw and unpasteurised, and our camphor is naturally derived from resins. In an age of ultra‑processed foods, Shridatt remains stubbornly slow.</p>
+                <p class="leading-relaxed font-medium text-[#2d5a27]">"We believe that nature doesn't need improvement — it needs respect." — Poojary Family</p>
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <span class="bg-green-50 px-5 py-2 rounded-full text-sm flex items-center gap-2"><i class="fas fa-tint text-[#8bc34a]"></i> Wood‑Pressed Oils</span>
+                    <span class="bg-green-50 px-5 py-2 rounded-full text-sm flex items-center gap-2"><i class="fas fa-seedling text-[#8bc34a]"></i> Heirloom Seeds</span>
+                    <span class="bg-green-50 px-5 py-2 rounded-full text-sm flex items-center gap-2"><i class="fas fa-mortar-pestle text-[#8bc34a]"></i> Granite‑Ground Masalas</span>
+                </div>
+            </div>
+            <div data-aos="fade-left">
+                <!-- single about image -->
+                <img src="shridat/images/pure-cold-pressed-oils-food-products%20(2).png" alt="Shridatt Pure Cold Pressed Oils" class="rounded-3xl shadow-2xl w-full h-auto object-cover" onerror="this.src='https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=800'">
+            </div>
+        </div>
+        <!-- values row -->
+        <div class="grid md:grid-cols-3 gap-8 mt-24">
+            <div class="bg-[#f2faf2] p-8 rounded-3xl" data-aos="fade-up"><i class="fas fa-hand-holding-heart text-3xl text-[#8bc34a] mb-4"></i><h4 class="text-xl font-bold mb-2">Ethical Sourcing</h4><p class="text-gray-600">We pay farmers 30% above market price and practice fair trade long before it became a label.</p></div>
+            <div class="bg-[#f2faf2] p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-flask text-3xl text-[#8bc34a] mb-4"></i><h4 class="text-xl font-bold mb-2">Lab Tested</h4><p class="text-gray-600">Every batch is tested for purity, heavy metals and adulterants. Full transparency reports online.</p></div>
+            <div class="bg-[#f2faf2] p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-recycle text-3xl text-[#8bc34a] mb-4"></i><h4 class="text-xl font-bold mb-2">Eco‑Conscious</h4><p class="text-gray-600">Glass bottles, cloth bags, and plastic‑free shipping. We offset our carbon through local tree planting.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== PRODUCTS PREVIEW SECTION (visible on homepage) ====== -->
+<section id="products-preview" class="py-28 px-5 bg-[#f9fbf9]">
+    <div class="container mx-auto">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="text-4xl md:text-5xl serif text-[#2d5a27] mb-4">Our Pure Essentials</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">A glimpse of our traditional, cold‑pressed range</p>
+        </div>
+        
+        <!-- product preview grid using your actual image files with forward slashes -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- product 1: Cold Pressed Coconut Oil -->
+            <div class="bg-white rounded-2xl shadow-md overflow-hidden product-card" data-aos="fade-up">
+                <div class="h-56 bg-[#f0f7f0] p-6 flex items-center justify-center">
+                    <img src="shridat/images/COLD_PRESSED_COCONUT_OIL.png" alt="Cold Pressed Coconut Oil" class="max-h-full max-w-full object-contain" onerror="this.src='https://via.placeholder.com/300x300?text=Coconut+Oil'">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-[#2d5a27] mb-2">Cold Pressed Coconut Oil</h3>
+                    <p class="text-gray-500 text-sm">Antibacterial, deeply moisturizing – for cooking & skin</p>
+                </div>
+            </div>
+            
+            <!-- product 2: Shridatt Gingelly Oil -->
+            <div class="bg-white rounded-2xl shadow-md overflow-hidden product-card" data-aos="fade-up" data-aos-delay="50">
+                <div class="h-56 bg-[#f0f7f0] p-6 flex items-center justify-center">
+                    <img src="shridat/images/Shridatt_Gingelly_Oil.png" alt="Shridatt Gingelly Oil" class="max-h-full max-w-full object-contain" onerror="this.src='https://via.placeholder.com/300x300?text=Gingelly+Oil'">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-[#2d5a27] mb-2">Cold Pressed Gingelly Oil</h3>
+                    <p class="text-gray-500 text-sm">Rich in vitamin E, lowers cholesterol, traditional nallennai</p>
+                </div>
+            </div>
+            
+            <!-- product 3: Celtic Sea Salt -->
+            <div class="bg-white rounded-2xl shadow-md overflow-hidden product-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="h-56 bg-[#f0f7f0] p-6 flex items-center justify-center">
+                    <img src="shridat/images/celtic-salt.png" alt="Celtic Sea Salt" class="max-h-full max-w-full object-contain" onerror="this.src='https://via.placeholder.com/300x300?text=Celtic+Salt'">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-[#2d5a27] mb-2">Celtic Sea Salt</h3>
+                    <p class="text-gray-500 text-sm">Grey salt · 80+ minerals · hand harvested</p>
+                </div>
+            </div>
+            
+            <!-- product 4: Chili Powder -->
+            <div class="bg-white rounded-2xl shadow-md overflow-hidden product-card" data-aos="fade-up" data-aos-delay="150">
+                <div class="h-56 bg-[#f0f7f0] p-6 flex items-center justify-center">
+                    <img src="shridat/images/Chili-Powder.png" alt="Organic Chilly Powder" class="max-h-full max-w-full object-contain" onerror="this.src='https://via.placeholder.com/300x300?text=Chili+Powder'">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-[#2d5a27] mb-2">Organic Chilly Powder</h3>
+                    <p class="text-gray-500 text-sm">Byadgi chillies · stone ground · no colour</p>
+                </div>
+            </div>
+            
+            <!-- product 5: Camphor Slab -->
+            <div class="bg-white rounded-2xl shadow-md overflow-hidden product-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="h-56 bg-[#f0f7f0] p-6 flex items-center justify-center">
+                    <img src="shridat/images/Camphor-slab.png" alt="Camphor Slab" class="max-h-full max-w-full object-contain" onerror="this.src='https://via.placeholder.com/300x300?text=Camphor+Slab'">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-[#2d5a27] mb-2">Camphor Slab (Natural)</h3>
+                    <p class="text-gray-500 text-sm">For hawan & aromatherapy · pure resin</p>
+                </div>
+            </div>
+            
+            <!-- product 6: Dhoopa Stick -->
+            <div class="bg-white rounded-2xl shadow-md overflow-hidden product-card" data-aos="fade-up" data-aos-delay="250">
+                <div class="h-56 bg-[#f0f7f0] p-6 flex items-center justify-center">
+                    <img src="shridat/images/dhoopa-stick.png" alt="Dhoopa Sticks" class="max-h-full max-w-full object-contain" onerror="this.src='https://via.placeholder.com/300x300?text=Dhoopa+Sticks'">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-[#2d5a27] mb-2">Dhoopa Sticks</h3>
+                    <p class="text-gray-500 text-sm">Resin based · long lasting · meditative aroma</p>
+                </div>
+            </div>
+            
+            <!-- product 7: Indian Kino -->
+            <div class="bg-white rounded-2xl shadow-md overflow-hidden product-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="h-56 bg-[#f0f7f0] p-6 flex items-center justify-center">
+                    <img src="shridat/images/indian_kind.png" alt="Indian Kino" class="max-h-full max-w-full object-contain" onerror="this.src='https://via.placeholder.com/300x300?text=Indian+Kino'">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-[#2d5a27] mb-2">Indian Kino (Vijayasar)</h3>
+                    <p class="text-gray-500 text-sm">Supports sugar metabolism · traditional herb</p>
+                </div>
+            </div>
+            
+            <!-- product 8: Raw Wild Honey -->
+            <div class="bg-white rounded-2xl shadow-md overflow-hidden product-card" data-aos="fade-up" data-aos-delay="350">
+                <div class="h-56 bg-[#f0f7f0] p-6 flex items-center justify-center">
+                    <img src="shridat/images/honey.png" alt="Raw Wild Honey" class="max-h-full max-w-full object-contain" onerror="this.src='https://via.placeholder.com/300x300?text=Raw+Honey'">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-[#2d5a27] mb-2">Raw Wild Honey</h3>
+                    <p class="text-gray-500 text-sm">Unpasteurised · antibacterial · immunity boost</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Browse All link with shridat/prs.html visible text -->
+        <div class="text-center mt-16" data-aos="fade-up">
+            <a href="shridat/prs.html" class="inline-flex items-center gap-3 bg-[#2d5a27] text-white text-xl px-10 py-5 rounded-full font-bold hover:bg-[#8bc34a] transition shadow-xl">
+                <i class="fas fa-arrow-right"></i> Browse All Products (shridat/prs.html)
+            </a>
+            <p class="text-sm text-gray-500 mt-4">View our complete catalog with 50+ traditional remedies</p>
+        </div>
+    </div>
+</section>
+
+<!-- ====== BENEFITS DEEP ====== -->
+<section id="benefits" class="py-28 px-5 bg-white">
+    <div class="container mx-auto">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <div data-aos="fade-right">
+                <span class="text-[#8bc34a] font-bold tracking-widest text-sm">WHY THOUSANDS TRUST US</span>
+                <h2 class="text-4xl serif text-[#2d5a27] mt-3 mb-8">Beyond Nutrition: Healing, Rooted In Nature</h2>
+                <div class="space-y-6">
+                    <div class="flex gap-4"><div class="benefit-icon shrink-0"><i class="fas fa-bolt"></i></div><div><h3 class="text-xl font-bold">Cold‑Pressed = Living Oils</h3><p class="text-gray-600">Heat destroys enzymes and antioxidants. Our ghani method retains vitamin E, lecithin and omega‑3s intact.</p></div></div>
+                    <div class="flex gap-4"><div class="benefit-icon shrink-0"><i class="fas fa-wind"></i></div><div><h3 class="text-xl font-bold">Camphor & Dhoopa – Pure Air</h3><p class="text-gray-600">Natural camphor and resin dhoopa purify the atmosphere, relieve sinus and enhance meditation.</p></div></div>
+                    <div class="flex gap-4"><div class="benefit-icon shrink-0"><i class="fas fa-dumbbell"></i></div><div><h3 class="text-xl font-bold">Seeds That Heal</h3><p class="text-gray-600">Flax, chia, sabja – loaded with lignans, fiber and mucilage. Unprocessed, sproutable.</p></div></div>
+                    <div class="flex gap-4"><div class="benefit-icon shrink-0"><i class="fas fa-mortar-pestle"></i></div><div><h3 class="text-xl font-bold">Indian Kino & Celtic Salt</h3><p class="text-gray-600">Rare botanicals like Indian Kino help manage blood sugar; celtic salt delivers 80+ trace minerals.</p></div></div>
+                </div>
+            </div>
+            <div class="bg-[#f4fbf4] p-8 rounded-[3rem]" data-aos="fade-left">
+                <h3 class="text-2xl serif mb-8 text-[#2d5a27]">Real People, Real Stories</h3>
+                <div class="space-y-6">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm"><i class="fas fa-quote-left text-[#8bc34a] text-xl"></i><p class="text-gray-700 italic my-3">"I was suffering from eczema for years. After switching to Shridatt's cold‑pressed coconut oil, my skin is calm and soft. I trust them blindly."</p><div class="font-bold">— Meera Shenoy, Kundapur</div></div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm"><i class="fas fa-quote-left text-[#8bc34a] text-xl"></i><p class="text-gray-700 italic my-3">"Their flax seeds are the only ones that actually have that nutty flavour and don't turn rancid. I've recommended to all my diabetic patients."</p><div class="font-bold">— Dr. Rajesh Hegde, Nutritionist</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== CONTACT ====== -->
+<section id="contact" class="py-24 px-5 bg-gray-50">
+    <div class="container mx-auto max-w-6xl">
+        <div class="bg-[#2d5a27] text-white rounded-[3rem] overflow-hidden shadow-2xl">
+            <div class="grid lg:grid-cols-2">
+                <div class="p-12 lg:p-16 space-y-6">
+                    <h2 class="text-4xl serif">Visit Our Store</h2>
+                    <p class="text-green-100">3rd floor, Vistar Commercial Complex, Yeyyadi, Mangalore – 575008</p>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4"><i class="fas fa-phone-alt text-[#8bc34a] w-6"></i><span>+91 8073899199  /  +91 7362036202</span></div>
+                        <div class="flex items-center gap-4"><i class="fas fa-envelope text-[#8bc34a] w-6"></i><span>care@shridatt.com</span></div>
+                        <div class="flex items-center gap-4"><i class="fas fa-clock text-[#8bc34a] w-6"></i><span>Mon–Sat 9:00 AM – 7:30 PM</span></div>
+                    </div>
+                    <div class="border-t border-white/20 pt-8">
+                        <p class="text-sm text-green-100">📦 We ship across India · Free delivery above ₹499 · Bulk orders welcome</p>
+                    </div>
+                </div>
+                <div class="h-96 lg:h-auto bg-gray-300 relative">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7775.897378353432!2d74.84650167510488!3d12.913619687393364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba35b4f6c6b6b6b%3A0x7c0f3d2c6e2f2e2!2sYeyyadi%2C%20Mangaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1711123456789" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" class="absolute inset-0"></iframe>
+                </div>
+            </div>
+        </div>
+        <!-- quick form -->
+        <div class="mt-16 grid md:grid-cols-2 gap-8 items-center">
+            <div><h3 class="text-2xl serif text-[#2d5a27] mb-4">Drop a Message</h3><p class="text-gray-600 mb-6">We usually reply within 2 hours during business days.</p></div>
+            <div class="flex gap-3">
+                <input type="text" placeholder="Your mobile" class="flex-1 px-6 py-4 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#8bc34a]">
+                <button class="bg-[#2d5a27] text-white px-8 py-4 rounded-full font-bold hover:bg-[#1e421a] transition"><i class="fab fa-whatsapp"></i> Send</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- footer -->
+<footer class="bg-[#0e200e] text-gray-400 py-16 px-5">
+    <div class="container mx-auto flex flex-col lg:flex-row justify-between gap-12 border-b border-gray-800 pb-12">
+        <div><span class="text-3xl text-white serif">Shridatt</span><p class="mt-3 max-w-md">Nurturing Health, Naturally — Since 1987</p></div>
+        <div class="flex gap-16">
+            <div><h4 class="text-white font-bold mb-4">Explore</h4><ul class="space-y-2"><li><a href="#home" class="hover:text-[#8bc34a]">Home</a></li><li><a href="#about-deep">About</a></li><li><a href="#products-preview">Products</a></li><li><a href="shridat/prs.html" class="hover:text-[#8bc34a]">Full Catalog</a></li></ul></div>
+            <div><h4 class="text-white font-bold mb-4">Legal</h4><ul class="space-y-2"><li>FSSAI: 11225312000424</li><li>GST: 32AABFS1234A1Z5</li><li>Organic Certified</li></ul></div>
+        </div>
+    </div>
+    <div class="container mx-auto mt-8 text-sm flex flex-wrap justify-between">© 2025 Shridatt Organic. All rights reserved. <span><i class="fas fa-leaf text-[#8bc34a]"></i> Plastic‑Neutral Shipping</span></div>
+</footer>
+
+<!-- AOS and scripts -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ once: true, duration: 800 });
+
+    // mobile menu
+    window.toggleMobileMenu = function() {
+        const m = document.getElementById('mobile-menu');
+        if(m.classList.contains('hidden')){
+            m.classList.remove('hidden');
+            setTimeout(()=> m.classList.remove('opacity-0'),10);
+        } else {
+            m.classList.add('opacity-0');
+            setTimeout(()=> m.classList.add('hidden'),300);
+        }
+    }
+
+    // nav shrink
+    window.addEventListener('scroll', ()=>{
+        const nav = document.getElementById('navbar');
+        if (window.scrollY>30) { nav.classList.add('py-2'); nav.classList.remove('py-4'); }
+        else { nav.classList.remove('py-2'); nav.classList.add('py-4'); }
+    });
+</script>
+</body>
+</html>
